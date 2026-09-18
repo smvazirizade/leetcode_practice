@@ -1,4 +1,0 @@
-# Pinned exactly: `ruff format` output is version-sensitive, so a floor-only pin lets CI
-# resolve a newer ruff than the one you ran locally and fail on formatting you cannot see.
-ruff==0.16.8
-pytest>=7.4,<9

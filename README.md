@@ -19,17 +19,19 @@ problems/
     tests/
       test_two_sum.py      runs against every file in solutions/
 harness.py                 load_solutions() -- the discovery helper
-pyproject.toml             pytest + ruff config
-requirements-dev.txt       pytest, ruff
+pyproject.toml             pytest + ruff config, and the dev dependency group
 .github/workflows/ci.yml   lint, format check, tests
 ```
 
 ## Running the tests
 
 ```
-pip install -r requirements-dev.txt
+pip install --group dev
 pytest -v
 ```
+
+`--group dev` reads the dev dependency group from `pyproject.toml`. It needs pip 25.1 or newer;
+run `python -m pip install --upgrade pip` first if yours is older.
 
 `-v` shows one case per solution, e.g. `test_leetcode_examples[example-1-hash_map]`.
 
