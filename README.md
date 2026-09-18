@@ -26,12 +26,18 @@ pyproject.toml             pytest + ruff config, and the dev dependency group
 ## Running the tests
 
 ```
-pip install --group dev
+uv pip install --group dev
 pytest -v
 ```
 
-`--group dev` reads the dev dependency group from `pyproject.toml`. It needs pip 25.1 or newer;
-run `python -m pip install --upgrade pip` first if yours is older.
+CI uses [uv](https://docs.astral.sh/uv/). Plain pip works too, if you'd rather not install it:
+
+```
+pip install --group dev
+```
+
+Either way `--group dev` reads the dev dependency group from `pyproject.toml`. The pip form needs
+pip 25.1 or newer; run `python -m pip install --upgrade pip` first if yours is older.
 
 `-v` shows one case per solution, e.g. `test_leetcode_examples[example-1-hash_map]`.
 
