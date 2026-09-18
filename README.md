@@ -46,6 +46,23 @@ ruff check .
 ruff format --check .
 ```
 
+## Contributing
+
+`main` is protected. Every change lands through a pull request, and a PR cannot be merged until
+the CI workflow is green — lint, format check, and the full test suite across every solution.
+There is no bypass; the rule applies to the repo owner too.
+
+```
+git checkout -b add-two-sum-sorted-pointer
+# ...add or edit files...
+git commit -am "Add sorted two-pointer solution to Two Sum"
+git push -u origin add-two-sum-sorted-pointer
+gh pr create --fill
+```
+
+The merge button unlocks once the `test` check passes. Run `pytest -v` and `ruff check .`
+locally first to catch failures before the runner does.
+
 ## Adding a solution to an existing problem
 
 Drop a new `.py` file in that problem's `solutions/` folder with a `Solution` class exposing the
@@ -61,8 +78,8 @@ class Solution:
 ```
 
 That is the whole step. No test file changes — `load_solutions` finds the file, and CI runs it
-against the existing tests on the next push. The test ids use the filename, so name it after the
-approach (`hash_map`, `sorted_two_pointer`) rather than `solution2`.
+against the existing tests when you open the PR. The test ids use the filename, so name it after
+the approach (`hash_map`, `sorted_two_pointer`) rather than `solution2`.
 
 A solution that fails to import, or that lacks the expected class or method, fails only its own
 test cases; the other solutions still run.
