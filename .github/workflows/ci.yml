@@ -12,16 +12,20 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: actions/setup-python@v5
+      # setup-uv installs Python as well, so no separate setup-python step is needed.
+      # activate-environment creates and activates a venv, which is why the install below
+      # needs no --system flag.
+      - uses: astral-sh/setup-uv@v10
         with:
           python-version: "3.12"
-          cache: pip
-          cache-dependency-path: pyproject.toml
+          activate-environment: true
+          enable-cache: true
+          cache-dependency-glob: pyproject.toml
 
+      # `uv sync` would fail here: it wants a [project] table, and this repo is deliberately
+      # not an installable package. `uv pip install --group` reads the group directly.
       - name: Install dev dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install --group dev
+        run: uv pip install --group dev
 
       - name: Lint
         run: ruff check .
