@@ -1,3 +1,13 @@
+# PEP 735 dependency group: the tools CI and contributors need, but that no solution imports.
+# A group rather than [project.optional-dependencies] because this repo is deliberately not an
+# installable package, and optional-dependencies would require it to become one.
+# Needs pip 25.1+: `pip install --group dev`.
+#
+# ruff is pinned exactly: `ruff format` output is version-sensitive, so a floor-only pin lets CI
+# resolve a newer ruff than the one you ran locally and fail on formatting you cannot see.
+[dependency-groups]
+dev = ["ruff==0.16.8", "pytest>=7.4,<9"]
+
 [tool.pytest.ini_options]
 testpaths = ["problems"]
 # pythonpath puts the repo root on sys.path so tests can `from harness import load_solutions`.
