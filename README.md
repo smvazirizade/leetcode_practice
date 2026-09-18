@@ -57,7 +57,7 @@ same method name the problem already uses:
 
 class Solution:
     def twoSum(self, nums: list[int], target: int) -> list[int]:
-        ...
+        return []  # your approach here
 ```
 
 That is the whole step. No test file changes — `load_solutions` finds the file, and CI runs it
@@ -82,7 +82,7 @@ SOLUTIONS = load_solutions(__file__, "<methodName>")
 
 @pytest.mark.parametrize("solve", SOLUTIONS)
 def test_examples(solve):
-    ...
+    assert solve([2, 7, 11, 15], 9) == [0, 1]
 ```
 
 Prefer asserting that an answer is *valid* over comparing it to one literal expected value —
