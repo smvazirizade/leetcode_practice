@@ -15,7 +15,7 @@ jobs:
       # setup-uv installs Python as well, so no separate setup-python step is needed.
       # activate-environment creates and activates a venv, which is why the install below
       # needs no --system flag.
-      - uses: astral-sh/setup-uv@v10
+      - uses: astral-sh/setup-uv@v10.1.0
         with:
           python-version: "3.12"
           activate-environment: true
